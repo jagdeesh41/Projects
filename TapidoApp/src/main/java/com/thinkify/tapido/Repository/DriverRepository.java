@@ -78,7 +78,7 @@ public class DriverRepository
 
         if(driverDetails1.isEmpty())
         {
-            return " Can't find a Ride Try again";
+            return null;
         }
         return driverDetails1.stream().collect(Collectors.toList()).get(0).getDetail().getName()+" is on the way";
 

@@ -1,5 +1,6 @@
 package com.thinkify.tapido.Service;
 
+import com.thinkify.tapido.Exceptions.RideNotFoundException;
 import com.thinkify.tapido.Models.DriverDetail;
 import com.thinkify.tapido.Models.Pair;
 import com.thinkify.tapido.Repository.DriverRepository;
@@ -35,13 +36,24 @@ public class DriverServiceImpl implements DriverService
     @Override
     public List<String> findRide(String user, String source, String destination)
     {
-        return  this.driverRepository.findRide(user,source,destination);
+        List<String> rides=this.driverRepository.findRide(user,source,destination);
+        if(rides.isEmpty())
+        {
+            throw new RideNotFoundException("No ride found -Near By Drivers Not Found");
+        }
+        return rides;
 
     }
 
     @Override
     public String chooseRide(String userName, String driverName)
     {
-        return this.driverRepository.chooseRide(userName,driverName);
+
+        String message=this.driverRepository.chooseRide(userName,driverName);
+        if(message==null)
+        {
+            throw new RideNotFoundException("Cant Find Ride -All Drivers are Occupied");
+        }
+        return message;
     }
 }

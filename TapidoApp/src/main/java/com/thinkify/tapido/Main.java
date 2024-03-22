@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 public class Main
 {
+
+
     static List<Detail> userDetails=new ArrayList<>();
     static List<DriverDetail>driverDetails=new ArrayList<>();
 
@@ -34,9 +36,6 @@ public class Main
     {
         DriverDetail driverDetail=new DriverDetail(driver_details,vehicle_details,current_location);
         driverDetails.add(driverDetail);
-
-
-
     }
 
     public static String choose_ride(String userName,String driverName)

@@ -4,6 +4,7 @@ import com.thinkify.tapido.Exceptions.ExceptionResponse;
 import com.thinkify.tapido.Exceptions.RideNotFoundException;
 import com.thinkify.tapido.Models.Pair;
 import com.thinkify.tapido.Service.DriverService;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +22,17 @@ public class RideController
     }
 
     @GetMapping("/findRide/{user}/{source}/{destination}")
-    public List<String> findRide(@PathVariable String user,@PathVariable  String source ,@PathVariable String destination)
+    public ResponseEntity<List<String>> findRide(@PathVariable String user,@PathVariable  String source ,@PathVariable String destination)
     {
-
         List<String> availableRides=this.driverService.findRide(user,source,destination);
-        if(availableRides.isEmpty())
-        {
-            throw new RideNotFoundException("No ride found");
-        }
-        return availableRides;
-
+        return new ResponseEntity<>(availableRides,HttpStatus.OK);
 
     }
     @GetMapping("/chooseRide/{user}/{driver}")
-    public String chooseRide(@PathVariable String user,@PathVariable String driver)
+    public ResponseEntity<String> chooseRide(@PathVariable String user, @PathVariable String driver)
     {
-        return this.driverService.chooseRide(user,driver);
+
+        return ResponseEntity.ok(this.driverService.chooseRide(user,driver));
 
     }
 

@@ -24,7 +24,6 @@ public class UserController
     {
 
         this.userService.addUserDetails(userDetail);
-        System.out.println(userService.getAllUsers());
     }
     @GetMapping("/getUsers")
     public ResponseEntity<List<Detail>> getAllDrivers()

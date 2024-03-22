@@ -12,9 +12,7 @@ import java.util.List;
 public class UserRepository
 {
     List<Detail> userDetails=new ArrayList<>();
-//    add_user(“Abhishek, M, 23”);
-//    add_user(“Rahul , M, 29”);
-//    add_user(“Nandini, F, 22”) ;
+
     {
         userDetails.add(new Detail("Abhishek, M, 23"));
         userDetails.add(new Detail("Rahul , M, 29"));
