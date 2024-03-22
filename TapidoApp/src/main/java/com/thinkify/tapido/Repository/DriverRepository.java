@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class DriverRepository
 {
     List<DriverDetail> driverDetailList=new ArrayList<>();
+
     {
 //        String  driver_details,String vehicle_details,String current_location
 //        “Driver1, M, 22”,“Swift, KA-01-12345”,(10,1))
@@ -30,6 +31,10 @@ public class DriverRepository
     {
         DriverDetail driverDetail=new DriverDetail(driver_details,vehicle_details,currentLocation);
         driverDetailList.add(driverDetail);
+
+
+
+
     }
 
     public List<DriverDetail> getAllDrivers()
@@ -53,10 +58,7 @@ public class DriverRepository
             availableRides.add(e.getDetail().getName() + "[Available]");
         });
 
-        if(availableRides.isEmpty())
-        {
-            availableRides.add("No Rides Found [Since all the driver are more than 5 units away from user]");
-        }
+
         return availableRides;
     }
 

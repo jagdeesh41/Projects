@@ -1,7 +1,11 @@
 package com.thinkify.tapido.Controller;
 
+import com.thinkify.tapido.Exceptions.ExceptionResponse;
+import com.thinkify.tapido.Exceptions.RideNotFoundException;
 import com.thinkify.tapido.Models.Pair;
 import com.thinkify.tapido.Service.DriverService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +23,13 @@ public class RideController
     @GetMapping("/findRide/{user}/{source}/{destination}")
     public List<String> findRide(@PathVariable String user,@PathVariable  String source ,@PathVariable String destination)
     {
-        return this.driverService.findRide(user,source,destination);
+
+        List<String> availableRides=this.driverService.findRide(user,source,destination);
+        if(availableRides.isEmpty())
+        {
+            throw new RideNotFoundException("No ride found");
+        }
+        return availableRides;
 
 
     }

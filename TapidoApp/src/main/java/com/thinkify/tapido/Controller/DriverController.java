@@ -23,7 +23,6 @@ public class DriverController
                                  @PathVariable String vehicleDetails,
                                  @PathVariable String currentLocation)
     {
-        System.out.println(currentLocation+getClass().getSimpleName());
         this.driverService.addDriverDetails(driverDetails,vehicleDetails,currentLocation);
 
 
